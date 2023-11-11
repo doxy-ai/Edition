@@ -115,6 +115,13 @@ body:not(.with-full-cover) .cover {
     color: #fff;
 }
 
+.cover-frame {
+    z-index: 10; 
+    animation: fadeIn ease 6s; 
+    animation-iteration-count: 1; 
+    animation-fill-mode: forwards;
+}
+
 @media (max-width: 767px) {
     .cover-description {
         font-size: 2.7rem;

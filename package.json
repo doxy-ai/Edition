@@ -63,8 +63,9 @@
                 ],
                 "default": "Modern sans-serif"
             },
-            "email_signup_text": {
+            "title_text": {
                 "type": "text",
+                "default": "Welcome!",
                 "group": "homepage"
             },
             "publication_cover_style": {

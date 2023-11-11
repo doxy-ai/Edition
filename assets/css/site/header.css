@@ -13,6 +13,17 @@
     font-weight: 700;
 }
 
+.gh-head-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.gh-head-over {
+    z-index: 1;
+}
+
 @media (min-width: 992px) {
     .is-head-left-logo .gh-head-menu {
         justify-content: center;

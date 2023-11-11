@@ -15,8 +15,12 @@
 <div class="site">
 
     <header id="gh-head" class="gh-head gh-outer">
-        <div class="gh-head-inner">
-            <div class="gh-head-brand">
+        <div class="gh-head-inner" style="position: relative;">
+            {{^is "home"}}
+                <div class="gh-head-background u-object-fit insert-frame"></div>
+            {{/is}}
+
+            <div class="gh-head-brand gh-head-over">
                 <div class="gh-head-brand-wrapper">
                     <a class="gh-head-logo" href="{{@site.url}}">
                         {{#if @site.logo}}
@@ -30,7 +34,7 @@
                 <button class="gh-burger"></button>
             </div>
 
-            <nav class="gh-head-menu">
+            <nav class="gh-head-menu gh-head-over">
                 {{navigation}}
                 {{#unless @site.members_enabled}}
                     {{#match @custom.navigation_layout "Stacked"}}
@@ -39,7 +43,7 @@
                 {{/unless}}
             </nav>
 
-            <div class="gh-head-actions">
+            <div class="gh-head-actions gh-head-over">
                 {{#unless @site.members_enabled}}
                     {{^match @custom.navigation_layout "Stacked"}}
                         <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search>{{> "icons/search"}}</button>
@@ -50,7 +54,7 @@
                         {{#unless @member}}
                             {{#unless @site.members_invite_only}}
                                 <a class="gh-head-link" href="#/portal/signin" data-portal="signin">Sign in</a>
-                                <a class="gh-head-btn gh-btn gh-primary-btn" href="#/portal/signup" data-portal="signup">Subscribe</a>
+                                <a class="gh-head-btn gh-btn gh-primary-btn" href="#/portal/signup" data-portal="signup">Register</a>
                             {{else}}
                                 <a class="gh-head-btn gh-btn gh-primary-btn" href="#/portal/signin" data-portal="signin">Sign in</a>
                             {{/unless}}
@@ -104,6 +108,21 @@
 </script>
 
 <script src="{{asset "built/main.min.js"}}"></script>
+
+{{!-- Insert iframes into all of the places that should be spiced up with stars! --}}
+<script type="text/javascript">
+    window.onload = function() {
+        var elems = Array.from(document.getElementsByClassName("insert-frame"));
+        elems.forEach(replace => {
+            replace.innerHTML = "<iframe class='u-object-fit cover-frame'" +
+            {{#is "home"}}
+                "src='https://link.doxy.fyi/?msg={{@custom.title_text}}&explain={{@site.description}}%20Feel%20free%20to%20scroll%20down%20to%20check%20it%20out%20or%20maybe%20browse%20our:'/>";
+            {{else}}
+                "src='https://link.doxy.fyi/?msg=&explain='/>";
+            {{/is}}
+        });
+    };
+</script>
 
 {{ghost_foot}}
 
